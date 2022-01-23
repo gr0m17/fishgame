@@ -251,23 +251,9 @@ function handleBackground() {
 
 //enemies
 
-const enemyImage01 = new Image();
-enemyImage01.src = "./sprites/enemy_01.png";
-const enemyImage02 = new Image();
-enemyImage02.src = "./sprites/enemy_02.png";
-const enemyImage03 = new Image();
-enemyImage03.src = "./sprites/enemy_03.png";
-const enemyImage04 = new Image();
-enemyImage04.src = "./sprites/enemy_04.png";
-const enemyImage05 = new Image();
-enemyImage05.src = "./sprites/enemy_05.png";
-const enemyImage = [
-  enemyImage01,
-  enemyImage02,
-  enemyImage03,
-  enemyImage04,
-  enemyImage05,
-];
+const enemyImage = new Image();
+enemyImage.src = "./sprites/enemy_01.png";
+
 class Enemy {
   constructor() {
     this.x = canvas.width + 200;
@@ -279,7 +265,6 @@ class Enemy {
     this.frameY = 0;
     this.spriteWidth = 418;
     this.spriteHeight = 397;
-    this.imgSrc = enemyImage[Math.floor(Math.random() * 5)];
   }
   draw() {
     //visualize the hitboxes
@@ -291,7 +276,7 @@ class Enemy {
     }
     //9 arguments; srcImg, spriteSheetX, spriteSheetY, spriteWidth,spriteHeight, spriteCanvasX, spriteCanvasY, spriteRenderWidth, spriteRenderHeight
     ctx.drawImage(
-      this.imgSrc,
+      enemyImage,
       this.frameX * this.spriteWidth,
       this.frameY * this.spriteHeight,
       this.spriteWidth,
@@ -310,7 +295,6 @@ class Enemy {
       this.x = canvas.width + 200;
       this.y = Math.random() * (canvas.height - 150) + 90;
       this.speed = Math.random() * 2 + 2;
-      this.imgSrc = enemyImage[Math.floor(Math.random() * 5)];
     }
     //animate the sprite 1 frame every 5 game frames
     if (gameFrame % 5 == 0) {
